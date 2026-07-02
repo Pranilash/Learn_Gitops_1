@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 920px;
+}
+.header { margin-bottom: 0.5rem; }
+.kicker { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.header h2 { font-size: 1.6rem; }
+.sub { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+
+.module {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.moduleHead {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border);
+}
+.moduleIcon { font-size: 1.6rem; color: var(--green); text-shadow: var(--glow); }
+.moduleMeta { flex: 1; }
+.moduleMeta h3 { font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem; }
+.moduleN { color: var(--green); opacity: 0.6; }
+.moduleMeta p { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem; }
+.moduleProgress {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+}
+.lvl {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid;
+  letter-spacing: 0.5px;
+}
+.beginner { color: var(--green); border-color: var(--green); }
+.intermediate { color: var(--amber); border-color: var(--amber); }
+.advanced { color: var(--magenta); border-color: var(--magenta); }
+
+.lessons { display: flex; flex-direction: column; }
+.lesson {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.1rem 0.7rem;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  transition: background 0.12s;
+}
+.lesson:last-child { border-bottom: none; }
+.lesson:hover { background: var(--bg-hover); }
+.check {
+  grid-row: 1 / 3;
+  align-self: center;
+  justify-self: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-bright);
+  border-radius: 50%;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.done .check {
+  background: var(--green);
+  color: #04140a;
+  border-color: var(--green);
+  box-shadow: var(--glow);
+}
+.lessonTitle { font-weight: 600; font-size: 0.92rem; }
+.done .lessonTitle { color: var(--green-soft); }
+.lessonSummary { font-size: 0.78rem; color: var(--text-muted); }

@@ -1,0 +1,66 @@
+.container { max-width: 1000px; display: flex; flex-direction: column; gap: 1.2rem; }
+.kicker { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.header h2 { font-size: 1.6rem; }
+.sub { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+
+.controls { display: flex; flex-direction: column; gap: 0.7rem; }
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.8rem;
+}
+.searchWrap:focus-within { border-color: var(--green); }
+.searchPrompt { color: var(--green); font-weight: 700; }
+.search {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+.tools { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.toolBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius);
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.toolBtn:hover { color: var(--text); border-color: var(--border-bright); }
+.activeTool { background: rgba(74, 246, 38, 0.12); color: var(--green-soft); border-color: var(--green); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0.75rem;
+}
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.cardHead { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.cmd { color: var(--green); font-size: 0.88rem; }
+.toolTag {
+  font-size: 0.65rem;
+  color: var(--cyan);
+  border: 1px solid var(--border-bright);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+}
+.desc { font-size: 0.82rem; color: var(--text); }
+.gitEq { font-size: 0.76rem; color: var(--cyan); }
+.when { font-size: 0.76rem; color: var(--text-muted); }
+.empty { color: var(--text-muted); grid-column: 1 / -1; }

@@ -1,0 +1,78 @@
+.panel {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  min-width: 240px;
+}
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.concept { color: var(--cyan); font-size: 0.72rem; }
+
+.flow {
+  padding: 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  flex: 1;
+  overflow-y: auto;
+}
+.nodeWrap { display: flex; flex-direction: column; align-items: center; width: 100%; }
+.node {
+  width: 100%;
+  max-width: 220px;
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: var(--bg-card);
+  position: relative;
+}
+.kind { font-size: 0.6rem; letter-spacing: 1px; opacity: 0.7; }
+.label { font-size: 0.85rem; font-weight: 600; }
+.detail { font-size: 0.72rem; color: var(--text-muted); }
+.arrow { color: var(--green); font-size: 1rem; line-height: 1.1; }
+
+/* kind colors (left border accent) */
+.git { border-left: 3px solid var(--git); }
+.argo { border-left: 3px solid var(--argo); }
+.k8s { border-left: 3px solid var(--k8s); }
+.sync { border-left: 3px solid var(--green); }
+.check { border-left: 3px solid var(--amber); }
+.cluster { border-left: 3px solid var(--cyan); }
+.secret { border-left: 3px solid var(--magenta); }
+
+/* status */
+.ok { box-shadow: 0 0 0 1px rgba(74, 246, 38, 0.15); }
+.pending { opacity: 0.55; border-style: dashed; }
+.warn { border-color: var(--red); box-shadow: 0 0 8px rgba(255, 95, 86, 0.25); }
+.warn .kind { color: var(--red); }
+
+.empty { color: var(--text-dim); font-size: 0.8rem; text-align: center; padding: 2rem 0; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+.legend span { display: flex; align-items: center; gap: 0.3rem; }
+.legend i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+.dotGit { background: var(--git); }
+.dotArgo { background: var(--argo); }
+.dotLive { background: var(--cyan); }
+.dotWarn { background: var(--red); }

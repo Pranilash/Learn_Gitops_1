@@ -1,0 +1,91 @@
+.container { display: flex; flex-direction: column; gap: 1.5rem; max-width: 900px; }
+.kicker { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.header h2 { font-size: 1.6rem; }
+.sub { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+
+.rankCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.rankTop { display: flex; align-items: center; gap: 1rem; }
+.rankIcon { font-size: 2.6rem; color: var(--green); text-shadow: var(--glow); }
+.rankInfo { flex: 1; }
+.rankInfo h3 { font-size: 1.3rem; }
+.rankInfo span { font-size: 0.82rem; color: var(--text-muted); }
+.pct { font-size: 1.6rem; font-weight: 700; color: var(--green-soft); }
+.xpBar { height: 9px; background: var(--bg-inset); border: 1px solid var(--border); border-radius: 5px; overflow: hidden; }
+.xpFill { height: 100%; background: linear-gradient(90deg, var(--green), var(--xp)); box-shadow: var(--glow); transition: width 0.4s; }
+.xpHint { font-size: 0.78rem; color: var(--text-dim); }
+
+.miniStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 0.4rem; }
+.miniStats > div {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.miniStats b { color: var(--green-soft); font-size: 1.1rem; }
+.miniStats span { font-size: 0.7rem; color: var(--text-muted); }
+
+.section { display: flex; flex-direction: column; gap: 0.8rem; }
+.h3 { font-size: 0.95rem; color: var(--text-muted); }
+
+.ladder { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.rung {
+  flex: 1;
+  min-width: 130px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  opacity: 0.5;
+}
+.rung.reached { opacity: 1; }
+.rung.current { border-color: var(--green); box-shadow: var(--glow); }
+.rungIcon { font-size: 1.5rem; color: var(--green); }
+.rungName { font-size: 0.82rem; font-weight: 600; text-align: center; }
+.rungXp { font-size: 0.7rem; color: var(--text-muted); }
+
+.badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.6rem; }
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem;
+}
+.badge.unlocked { border-color: var(--border-bright); }
+.badge.locked { opacity: 0.55; }
+.badgeIcon { font-size: 1.6rem; }
+.badgeBody { flex: 1; display: flex; flex-direction: column; }
+.badgeBody strong { font-size: 0.9rem; }
+.unlocked .badgeBody strong { color: var(--green-soft); }
+.badgeBody span { font-size: 0.76rem; color: var(--text-muted); }
+.badgeXp { font-size: 0.78rem; color: var(--xp); }
+
+.resetBtn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+.resetBtn:hover { background: rgba(255,95,86,0.12); }
