@@ -12,29 +12,41 @@ const navGroups: { label: string; items: { id: string; label: string }[] }[] = [
   {
     label: 'learn',
     items: [
-      { id: 'home', label: 'home' },
-      { id: 'modules', label: 'modules' },
+      { id: 'home', label: 'dashboard' },
+      { id: 'curriculum', label: 'curriculum' },
+      { id: 'capstones', label: 'capstones' },
+      { id: 'search', label: 'search' },
       { id: 'commands', label: 'commands' },
+      { id: 'references', label: 'references' },
+      { id: 'realinfra', label: 'real-infra-guide' },
     ],
   },
   {
     label: 'practice',
     items: [
+      { id: 'workspace', label: 'vscode-workspace' },
+      { id: 'argolab', label: 'argo-gitops-lab' },
+      { id: 'troubleshoot', label: 'k8s-troubleshoot' },
+      { id: 'terminal', label: 'terminal-sim' },
       { id: 'lab', label: 'code-lab' },
       { id: 'reconcile', label: 'reconcile-loop' },
       { id: 'pipeline', label: 'pipeline-dag' },
-      { id: 'terminal', label: 'terminal-sim' },
     ],
   },
   {
     label: 'profile',
-    items: [{ id: 'achievements', label: 'achievements' }],
+    items: [
+      { id: 'competency', label: 'competency-matrix' },
+      { id: 'notes', label: 'my-notes' },
+      { id: 'achievements', label: 'achievements' },
+    ],
   },
 ]
 
 function isActiveNav(itemId: string, currentView: string): boolean {
   if (itemId === currentView) return true
-  if (itemId === 'modules' && currentView.startsWith('lesson:')) return true
+  if (itemId === 'workspace' && (currentView === 'workspace' || currentView.startsWith('scenario:'))) return true
+  if (itemId === 'curriculum' && currentView.startsWith('academy:')) return true
   if (itemId === 'lab' && currentView.startsWith('lab:')) return true
   return false
 }
@@ -49,12 +61,12 @@ export function Layout({ children, currentView, onNavigate }: LayoutProps) {
           <span className={`${styles.dot} ${styles.red}`} />
           <span className={`${styles.dot} ${styles.yellow}`} />
           <span className={`${styles.dot} ${styles.green}`} />
-          <span className={styles.chromeTitle}>gitops://learn</span>
+          <span className={styles.chromeTitle}>devops://academy</span>
         </div>
 
         <button className={styles.brand} onClick={() => onNavigate('home')}>
           <span className={styles.prompt}>$</span>
-          <span className={styles.brandText}>gitops-learn</span>
+          <span className={styles.brandText}>devops-academy</span>
           <span className="cursor-blink" />
         </button>
 

@@ -1,0 +1,299 @@
+.container {
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  max-width: 750px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.incidentBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.incidentBtn:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-bright);
+}
+
+.incidentBtn.active {
+  background: rgba(74, 246, 38, 0.1);
+  border-color: var(--green);
+}
+
+.incidentBtn.resolved {
+  border-left: 3px solid var(--green);
+}
+
+.btnTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.incidentId {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.sevBadge {
+  font-size: 0.62rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.critical { background: rgba(255, 95, 86, 0.15); color: var(--red); border: 1px solid rgba(255, 95, 86, 0.3); }
+.high { background: rgba(255, 176, 0, 0.15); color: var(--amber); border: 1px solid rgba(255, 176, 0, 0.3); }
+.medium { background: rgba(54, 214, 231, 0.15); color: var(--cyan); border: 1px solid rgba(54, 214, 231, 0.3); }
+
+.btnTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: block;
+}
+
+/* Arena main workspace */
+.arena {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.arenaHead {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.arenaTitle {
+  font-size: 1.2rem;
+  color: var(--green-soft);
+  margin-bottom: 0.4rem;
+}
+
+.symptomBox {
+  background: rgba(255, 95, 86, 0.08);
+  border: 1px solid rgba(255, 95, 86, 0.25);
+  border-left: 4px solid var(--red);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.symptomLabel {
+  font-size: 0.72rem;
+  color: var(--red);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.symptomText {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.tabBtn {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.tabBtn:hover {
+  color: var(--text);
+}
+
+.tabBtn.activeTab {
+  color: var(--green);
+  border-bottom-color: var(--green);
+}
+
+.terminalPane {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.cmdChips {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.cmdChip {
+  font-size: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--cyan);
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.cmdChip:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-bright);
+}
+
+.outputArea {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text);
+  overflow-x: auto;
+  min-height: 120px;
+}
+
+.outputLine {
+  white-space: pre-wrap;
+}
+
+/* Diagnosis section */
+.diagnosisSection {
+  margin-top: 1.5rem;
+}
+
+.sectionHeading {
+  font-size: 0.95rem;
+  color: var(--cyan);
+  margin-bottom: 0.8rem;
+}
+
+.optionsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.optionCard {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: all 0.12s;
+}
+
+.optionCard:hover {
+  border-color: var(--border-bright);
+  background: var(--bg-hover);
+}
+
+.optionCard.selectedOption {
+  border-color: var(--cyan);
+  background: rgba(54, 214, 231, 0.1);
+}
+
+.optionCard.correctOption {
+  border-color: var(--green);
+  background: rgba(74, 246, 38, 0.1);
+  color: var(--green);
+}
+
+.optionCard.wrongOption {
+  border-color: var(--red);
+  background: rgba(255, 95, 86, 0.1);
+  color: var(--red);
+}
+
+.postmortemBox {
+  background: rgba(74, 246, 38, 0.06);
+  border: 1px solid rgba(74, 246, 38, 0.25);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: 1.2rem;
+}
+
+.postmortemLabel {
+  font-size: 0.72rem;
+  color: var(--green);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+}
+
+.postmortemText {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.manifestBox {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-size: 0.82rem;
+  overflow-x: auto;
+  white-space: pre;
+  color: var(--text);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

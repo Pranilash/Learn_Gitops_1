@@ -182,8 +182,8 @@ spec:
       if (!hasLine(code, /^kind:\s*Service/)) feedback.push('kind must be Service')
       if (!hasLine(code, /^name:\s*web-svc/)) feedback.push('metadata.name must be web-svc')
       if (!has(code, /selector:[\s\S]*app:\s*web/)) feedback.push('selector.app must be web')
-      if (!hasLine(code, /^port:\s*80\b/)) feedback.push('port must be 80')
-      if (!hasLine(code, /^targetPort:\s*8080\b/)) feedback.push('targetPort must be 8080')
+      if (!has(code, /port:\s*80\b/)) feedback.push('port must be 80')
+      if (!has(code, /targetPort:\s*8080\b/)) feedback.push('targetPort must be 8080')
       if (feedback.length === 0) return { passed: true, feedback: ['Service routes :80 → pods :8080 by label app=web.'] }
       return { passed: false, feedback }
     },
@@ -675,6 +675,316 @@ spec:
         { label: 'ApplicationSet', kind: 'argo', detail: 'list generator', status: hasLine(code, /^kind:\s*ApplicationSet/) ? 'ok' : 'warn' },
         { label: 'App web-staging', kind: 'sync', detail: 'overlays/staging', status: staging ? 'ok' : 'warn' },
         { label: 'App web-prod', kind: 'sync', detail: 'overlays/prod', status: prod ? 'ok' : 'warn' },
+      ]
+    },
+  },
+
+  // 9 ─────────────────────────────────────────────────────────────────────
+  {
+    id: 'ingress-routing',
+    title: 'Route HTTP Traffic with Ingress',
+    difficulty: 'medium',
+    category: 'service',
+    concept: 'Layer 7 HTTP routing & reverse proxying',
+    analogy: 'Like an Nginx reverse proxy or Express router at the cluster edge: maps hostnames and paths to internal Services.',
+    problem: `Configure an Ingress object to route traffic for host app.local:
+- Path / routes to web-client Service on port 80
+- Path /api routes to web-api Service on port 5000
+- ingressClassName: nginx
+- pathType: Prefix`,
+    filename: 'ingress.yaml',
+    starterCode: `apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  ingressClassName: 
+  rules:
+    - host: app.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: 
+                port:
+                  number: 
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: 
+                port:
+                  number: `,
+    hints: [
+      'ingressClassName should be "nginx".',
+      'The root path / goes to service name "web-client" on port 80.',
+      'The /api path goes to service name "web-api" on port 5000.',
+    ],
+    solution: `apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: app.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-client
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: web-api
+                port:
+                  number: 5000`,
+    xp: 150,
+    validate: (code) => {
+      const feedback: string[] = []
+      if (!hasLine(code, /^kind:\s*Ingress/)) feedback.push('kind must be Ingress')
+      if (!has(code, /ingressClassName:\s*nginx/)) feedback.push('ingressClassName must be nginx')
+      if (!has(code, /host:\s*app\.local/)) feedback.push('host must be app.local')
+      if (!has(code, /name:\s*web-client/)) feedback.push('root path must route to web-client')
+      if (!has(code, /number:\s*80\b/)) feedback.push('web-client port must be 80')
+      if (!has(code, /name:\s*web-api/)) feedback.push('/api path must route to web-api')
+      if (!has(code, /number:\s*5000\b/)) feedback.push('web-api port must be 5000')
+      if (feedback.length === 0) return { passed: true, feedback: ['Ingress properly routes / and /api to respective backend Services!'] }
+      return { passed: false, feedback }
+    },
+    getDiagram: (code) => {
+      const ok = hasLine(code, /^kind:\s*Ingress/) && has(code, /app\.local/)
+      return [
+        { label: 'Host: app.local', kind: 'k8s', detail: 'Ingress Controller', status: ok ? 'ok' : 'warn' },
+        { label: 'Path: /', kind: 'sync', detail: 'web-client:80', status: has(code, /web-client/) ? 'ok' : 'warn' },
+        { label: 'Path: /api', kind: 'sync', detail: 'web-api:5000', status: has(code, /web-api/) ? 'ok' : 'warn' },
+        { label: 'Pods Client & API', kind: 'cluster', detail: 'Live workloads', status: 'ok' },
+      ]
+    },
+  },
+
+  // 10 ────────────────────────────────────────────────────────────────────
+  {
+    id: 'hpa-autoscaling',
+    title: 'Autoscale Pods with HPA',
+    difficulty: 'medium',
+    category: 'deployment',
+    concept: 'Horizontal Pod Autoscaler (feedback control loop)',
+    analogy: 'Like an automatic thermostat that scales worker threads when CPU load increases, then cools down when idle.',
+    problem: `Create a HorizontalPodAutoscaler for the web deployment:
+- name: web-hpa
+- scaleTargetRef: Deployment web (apiVersion: apps/v1)
+- minReplicas: 2
+- maxReplicas: 10
+- target CPU utilization percentage: 75%`,
+    filename: 'hpa.yaml',
+    starterCode: `apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: 
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: 
+  minReplicas: 
+  maxReplicas: 
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: `,
+    hints: [
+      'metadata.name should be web-hpa.',
+      'scaleTargetRef.name should be web.',
+      'minReplicas is 2, maxReplicas is 10.',
+      'averageUtilization is 75.',
+    ],
+    solution: `apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 75`,
+    xp: 150,
+    validate: (code) => {
+      const feedback: string[] = []
+      if (!hasLine(code, /^kind:\s*HorizontalPodAutoscaler/)) feedback.push('kind must be HorizontalPodAutoscaler')
+      if (!hasLine(code, /^name:\s*web-hpa/)) feedback.push('metadata.name must be web-hpa')
+      if (!has(code, /scaleTargetRef:[\s\S]*name:\s*web\b/)) feedback.push('scaleTargetRef.name must be web')
+      if (!has(code, /minReplicas:\s*2\b/)) feedback.push('minReplicas must be 2')
+      if (!has(code, /maxReplicas:\s*10\b/)) feedback.push('maxReplicas must be 10')
+      if (!has(code, /averageUtilization:\s*75\b/)) feedback.push('averageUtilization must be 75')
+      if (feedback.length === 0) return { passed: true, feedback: ['HPA will scale web from 2 to 10 pods when CPU exceeds 75%!'] }
+      return { passed: false, feedback }
+    },
+    getDiagram: (code) => {
+      const ok = hasLine(code, /^kind:\s*HorizontalPodAutoscaler/)
+      return [
+        { label: 'HPA web-hpa', kind: 'k8s', detail: 'target CPU: 75%', status: ok ? 'ok' : 'warn' },
+        { label: 'Deployment web', kind: 'argo', detail: '2 to 10 replicas', status: 'ok' },
+        { label: 'Metrics Server', kind: 'cluster', detail: 'CPU Telemetry', status: 'ok' },
+      ]
+    },
+  },
+
+  // 11 ────────────────────────────────────────────────────────────────────
+  {
+    id: 'mongo-pvc',
+    title: 'Persistent Storage with PVC',
+    difficulty: 'medium',
+    category: 'deployment',
+    concept: 'Decoupling storage lifecycle from container lifecycle',
+    analogy: 'Like plugging an external hard drive into a laptop: if the laptop crashes and is replaced, the hard drive and data remain intact.',
+    problem: `Write a PersistentVolumeClaim for MongoDB data persistence:
+- name: mongo-data-pvc
+- accessModes: ReadWriteOnce
+- storage: 10Gi
+- storageClassName: standard`,
+    filename: 'mongo-pvc.yaml',
+    starterCode: `apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: 
+spec:
+  accessModes:
+    - 
+  storageClassName: 
+  resources:
+    requests:
+      storage: `,
+    hints: [
+      'metadata.name should be mongo-data-pvc.',
+      'accessModes is [ReadWriteOnce].',
+      'storageClassName is "standard".',
+      'resources.requests.storage is 10Gi.',
+    ],
+    solution: `apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 10Gi`,
+    xp: 150,
+    validate: (code) => {
+      const feedback: string[] = []
+      if (!hasLine(code, /^kind:\s*PersistentVolumeClaim/)) feedback.push('kind must be PersistentVolumeClaim')
+      if (!hasLine(code, /^name:\s*mongo-data-pvc/)) feedback.push('metadata.name must be mongo-data-pvc')
+      if (!has(code, /ReadWriteOnce/)) feedback.push('accessModes must include ReadWriteOnce')
+      if (!has(code, /storageClassName:\s*standard/)) feedback.push('storageClassName must be standard')
+      if (!has(code, /storage:\s*10Gi/)) feedback.push('storage request must be 10Gi')
+      if (feedback.length === 0) return { passed: true, feedback: ['PVC dynamically binds 10Gi storage volume for MongoDB!'] }
+      return { passed: false, feedback }
+    },
+    getDiagram: (code) => {
+      const ok = hasLine(code, /^kind:\s*PersistentVolumeClaim/)
+      return [
+        { label: 'PVC mongo-data-pvc', kind: 'k8s', detail: 'Claim: 10Gi RWO', status: ok ? 'ok' : 'warn' },
+        { label: 'StorageClass standard', kind: 'sync', detail: 'Dynamic Provisioner', status: 'ok' },
+        { label: 'PV Volume Bound', kind: 'cluster', detail: 'Persistent Disk', status: ok ? 'ok' : 'pending' },
+      ]
+    },
+  },
+
+  // 12 ────────────────────────────────────────────────────────────────────
+  {
+    id: 'kyverno-policy',
+    title: 'Enforce Security with Kyverno Policy',
+    difficulty: 'hard',
+    category: 'sync',
+    concept: 'Policy as Code & Admission Control',
+    analogy: 'Like TypeScript compiler strict mode or an ESLint rule, but applied at runtime to the cluster API before any YAML is allowed in.',
+    problem: `Write a Kyverno ClusterPolicy that disallows the mutable ':latest' image tag:
+- name: disallow-latest-tag
+- validationFailureAction: Enforce
+- matches pods
+- validate pattern: spec.containers[*].image must NOT equal '*:latest'`,
+    filename: 'disallow-latest.yaml',
+    starterCode: `apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: 
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: validate-image-tag
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Using ':latest' image tag is prohibited. Use immutable tags."
+        pattern:
+          spec:
+            containers:
+              - image: `,
+    hints: [
+      'metadata.name should be disallow-latest-tag.',
+      'To disallow :latest, the pattern uses "!*:latest".',
+    ],
+    solution: `apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-latest-tag
+spec:
+  validationFailureAction: Enforce
+  rules:
+    - name: validate-image-tag
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      validate:
+        message: "Using ':latest' image tag is prohibited. Use immutable tags."
+        pattern:
+          spec:
+            containers:
+              - image: "!*:latest"`,
+    xp: 250,
+    validate: (code) => {
+      const feedback: string[] = []
+      if (!hasLine(code, /^kind:\s*ClusterPolicy/)) feedback.push('kind must be ClusterPolicy')
+      if (!hasLine(code, /^name:\s*disallow-latest-tag/)) feedback.push('metadata.name must be disallow-latest-tag')
+      if (!has(code, /validationFailureAction:\s*Enforce/)) feedback.push('validationFailureAction must be Enforce')
+      if (!has(code, /image:\s*["']?!?\*:latest["']?/)) feedback.push('image pattern must prohibit !*:latest')
+      if (feedback.length === 0) return { passed: true, feedback: ['Kyverno policy will block any container manifest with :latest!'] }
+      return { passed: false, feedback }
+    },
+    getDiagram: (code) => {
+      const ok = hasLine(code, /^kind:\s*ClusterPolicy/)
+      return [
+        { label: 'Kyverno Admission Controller', kind: 'check', detail: 'Validating Webhook', status: ok ? 'ok' : 'warn' },
+        { label: 'Policy: disallow-latest-tag', kind: 'argo', detail: 'Action: Enforce', status: ok ? 'ok' : 'warn' },
+        { label: 'Blocked: app:latest ❌', kind: 'cluster', detail: 'Rejection Gate', status: 'warn' },
+        { label: 'Allowed: app:1.4.0 ✓', kind: 'cluster', detail: 'Immutable SHA/SemVer', status: 'ok' },
       ]
     },
   },

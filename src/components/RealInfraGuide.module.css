@@ -1,0 +1,123 @@
+.container {
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  max-width: 750px;
+}
+
+.osSelector {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.osBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.osBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-bright);
+}
+
+.osBtn.active {
+  background: rgba(54, 214, 231, 0.15);
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.guidesGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guideCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.guideTitle {
+  font-size: 1.15rem;
+  color: var(--green-soft);
+  margin-bottom: 0.4rem;
+}
+
+.guideSummary {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.stepSection {
+  margin: 1rem 0;
+}
+
+.stepHeading {
+  font-size: 0.8rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.stepList {
+  margin: 0.4rem 0 0.8rem 1.4rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.stepList li {
+  margin-bottom: 0.3rem;
+}
+
+.codeBlock {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  margin: 0.6rem 0;
+}
+
+.verifySection {
+  background: rgba(74, 246, 38, 0.05);
+  border: 1px dashed var(--border-bright);
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.82rem;
+}

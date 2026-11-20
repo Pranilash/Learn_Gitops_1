@@ -1,0 +1,185 @@
+.container {
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  max-width: 750px;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.filterBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-bright);
+}
+
+.filterBtn.active {
+  background: rgba(74, 246, 38, 0.12);
+  border-color: var(--green);
+  color: var(--green-soft);
+}
+
+.searchBar {
+  width: 100%;
+  max-width: 500px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  outline: none;
+}
+
+.searchBar:focus {
+  border-color: var(--border-bright);
+  box-shadow: 0 0 0 2px rgba(74, 246, 38, 0.1);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  transition: border-color 0.15s;
+}
+
+.card:hover {
+  border-color: var(--border-bright);
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.titleLink {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+  color: var(--green-soft);
+}
+
+.badges {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.typeBadge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.priorityBadge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.required {
+  background: rgba(74, 246, 38, 0.15);
+  color: var(--green);
+  border: 1px solid rgba(74, 246, 38, 0.3);
+}
+
+.recommended {
+  background: rgba(255, 176, 0, 0.15);
+  color: var(--amber);
+  border: 1px solid rgba(255, 176, 0, 0.3);
+}
+
+.advanced {
+  background: rgba(255, 95, 162, 0.15);
+  color: var(--magenta);
+  border: 1px solid rgba(255, 95, 162, 0.3);
+}
+
+.metaRow {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.desc {
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.68rem;
+  padding: 0.1rem 0.4rem;
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+}

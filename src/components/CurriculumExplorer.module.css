@@ -1,0 +1,257 @@
+.container {
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+/* Phase cards */
+.phases {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.phase {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.phaseHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.12s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.phaseHeader:hover {
+  background: var(--bg-hover);
+}
+
+.phaseIcon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.phaseInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.phaseTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phaseNumber {
+  font-size: 0.72rem;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.phaseSubtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.phaseMeta {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+}
+
+.phaseProgress {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.phaseProgressNum {
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: block;
+}
+
+.phaseProgressLabel {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  display: block;
+}
+
+.phaseArrow {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.phaseArrow.open {
+  transform: rotate(90deg);
+}
+
+/* Modules within a phase */
+.modules {
+  border-top: 1px solid var(--border);
+}
+
+.module {
+  border-bottom: 1px solid var(--border);
+}
+
+.module:last-child {
+  border-bottom: none;
+}
+
+.moduleHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.2rem 0.7rem 2rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.moduleIcon {
+  font-size: 1rem;
+}
+
+.moduleTitle {
+  flex: 1;
+}
+
+.moduleMeta {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.moduleProgress {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+/* Lessons within a module */
+.lessons {
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.2rem 0.55rem 3rem;
+  background: none;
+  border: none;
+  border-top: 1px solid rgba(31, 61, 43, 0.3);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.1s;
+  width: 100%;
+}
+
+.lesson:first-child {
+  border-top: none;
+}
+
+.lesson:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.lesson.done {
+  color: var(--text-dim);
+}
+
+.check {
+  width: 1.2rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.lesson.done .check {
+  color: var(--green);
+}
+
+.lessonTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lessonMeta {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.lessonTime {
+  color: var(--text-dim);
+}
+
+.lvl {
+  font-size: 0.62rem;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.beginner { background: rgba(74, 246, 38, 0.12); color: var(--green); }
+.intermediate { background: rgba(255, 176, 0, 0.12); color: var(--amber); }
+.advanced { background: rgba(255, 95, 162, 0.12); color: var(--magenta); }
+
+/* Progress bar in phase header */
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: var(--bg-inset);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 0.3rem;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.4s;
+}

@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { modules, type Command } from '../data/curriculum'
+import { curriculum } from '../data/curriculum-index'
 import styles from './CommandExplorer.module.css'
 
 interface ExtraCommand extends Command {
@@ -26,11 +27,26 @@ export function CommandExplorer() {
   const [tool, setTool] = useState('all')
 
   const allCommands = useMemo<ExtraCommand[]>(() => {
-    const fromLessons: ExtraCommand[] = modules.flatMap((m) =>
+    const fromOldLessons: ExtraCommand[] = modules.flatMap((m) =>
       m.lessons.flatMap((l) => (l.commands ?? []).map((c) => ({ ...c, tool: toolOf(c.command) })))
     )
+
+    const fromAcademyLessons: ExtraCommand[] = curriculum.flatMap((p) =>
+      p.modules.flatMap((m) =>
+        m.lessons.flatMap((l) =>
+          (l.commands ?? []).map((c) => ({
+            command: c.command,
+            description: c.description,
+            example: c.example,
+            whenToUse: c.whenToUse,
+            tool: toolOf(c.command),
+          }))
+        )
+      )
+    )
+
     const seen = new Set<string>()
-    return [...fromLessons, ...extras].filter((c) => {
+    return [...fromAcademyLessons, ...fromOldLessons, ...extras].filter((c) => {
       if (seen.has(c.command)) return false
       seen.add(c.command)
       return true

@@ -1,0 +1,243 @@
+.container {
+  max-width: 1100px;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.kicker {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.sub {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  max-width: 750px;
+}
+
+.categoryBar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.catBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.catBtn:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-bright);
+}
+
+.catBtn.active {
+  background: rgba(239, 123, 77, 0.15);
+  border-color: var(--argo);
+  color: #ff986e;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1.5rem;
+}
+
+.labList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 800px;
+  overflow-y: auto;
+}
+
+.labItem {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.12s;
+  color: var(--text);
+  font-family: var(--font-mono);
+}
+
+.labItem:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-bright);
+}
+
+.labItem.active {
+  background: rgba(239, 123, 77, 0.12);
+  border-color: var(--argo);
+}
+
+.labItem.done {
+  border-left: 3px solid var(--green);
+}
+
+.labItemTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.labItemTitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: block;
+}
+
+/* Detail workspace */
+.labDetail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.labHeader {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.labTitle {
+  font-size: 1.2rem;
+  color: #ff986e;
+  margin-bottom: 0.4rem;
+}
+
+.objectiveBox {
+  background: rgba(239, 123, 77, 0.08);
+  border: 1px solid rgba(239, 123, 77, 0.3);
+  border-left: 4px solid var(--argo);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.88rem;
+}
+
+.sectionTitle {
+  font-size: 0.85rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.stepList {
+  margin: 0.4rem 0 1rem 1.4rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.stepList li {
+  margin-bottom: 0.3rem;
+}
+
+.yamlBox {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0.6rem 0 1rem 0;
+  color: var(--text);
+}
+
+.cmdCard {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.cmdCode {
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.cmdExp {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+
+.cmdOut {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: pre-wrap;
+}
+
+.internalBox {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--cyan);
+  border-radius: var(--radius);
+  padding: 0.9rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  color: var(--text);
+}
+
+.verifyBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.verifyBtn {
+  background: rgba(74, 246, 38, 0.15);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.verifyBtn:hover {
+  background: rgba(74, 246, 38, 0.25);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
